@@ -1,0 +1,17 @@
+meta {
+  name: Book
+  type: http
+  seq: 2
+}
+
+get {
+  url: const express = require('express'); const bodyParser = require('body-parser'); const books = require('./data.json') const app = express(); app.use(bodyParser.json());  const PORT = process.env.PORT || 3000;    //create a new book app.post('/books',(req,res) => {   const { book_id, title, author, genre, year, copies } = req.body;   if (!book_id || !title || !author || !genre || !year || !copies) {     return res.status(400).json({ error: 'All fields are required' });   }   const newBook = { book_id, title, author, genre, year, copies };   books.push(newBook);   return res.status(201).json(newBook); })  // Retrieve All Books app.get('/books',(req,res)=>{   res.status(200).json(books); })  //Retrieve a Specific Book by ID app.get('/books/:id',(req,res) => {   const id = req.params.id;   const book = books.find(book => book.book_id == id)    if(!book){     return res.status(404).json({ error: 'Book not found' });   }   res.status(200).json(book); }) //update a specific book by id app.put('/books/:id', (req, res) => {   const { title, author, genre, year, copies } = req.body;   const book = books.find(b => b.book_id === req.params.id);    if (!book) {     return res.status(404).json({ error: 'Book not found' });   }    if (title) book.title = title;   if (author) book.author = author;   if (genre) book.genre = genre;   if (year) book.year = year;   if (copies) book.copies = copies;    res.status(200).json(book); });  //delete a speccific book by id app.delete('/books/:id', (req, res) => {   const index = books.find(b => b.book_id === req.params.id);    if (index === -1) {     return res.status(404).json({ error: 'Book not found' });   }     books.splice(index, 1);    res.status(200).json({ message: 'Book deleted successfully' }); });  app.listen(PORT, () => {   console.log(Server is running on port ${PORT}); });
+  body: none
+  auth: none
+}
+
+params:path {
+  id',(req,res)%20=%3E%20%7B%20%20%20const%20id%20=%20req.params.id;%20%20%20const%20book%20=%20books.find(book%20=%3E%20book.book_id%20==%20id)%20%20%20%20if(!book)%7B%20%20%20%20%20return%20res.status(404).json(%7B%20error:%20'Book%20not%20found'%20%7D);%20%20%20%7D%20%20%20res.status(200).json(book);%20%7D)%20: 
+  id',%20(req,%20res)%20=%3E%20%7B%20%20%20const%20%7B%20title,%20author,%20genre,%20year,%20copies%20%7D%20=%20req.body;%20%20%20const%20book%20=%20books.find(b%20=%3E%20b.book_id%20===%20req.params.id);%20%20%20%20if%20(!book)%20%7B%20%20%20%20%20return%20res.status(404).json(%7B%20error:%20'Book%20not%20found'%20%7D);%20%20%20%7D%20%20%20%20if%20(title)%20book.title%20=%20title;%20%20%20if%20(author)%20book.author%20=%20author;%20%20%20if%20(genre)%20book.genre%20=%20genre;%20%20%20if%20(year)%20book.year%20=%20year;%20%20%20if%20(copies)%20book.copies%20=%20copies;%20%20%20%20res.status(200).json(book);%20%7D);%20%20: 
+  id',%20(req,%20res)%20=%3E%20%7B%20%20%20const%20index%20=%20books.find(b%20=%3E%20b.book_id%20===%20req.params.id);%20%20%20%20if%20(index%20===%20-1)%20%7B%20%20%20%20%20return%20res.status(404).json(%7B%20error:%20'Book%20not%20found'%20%7D);%20%20%20%7D%20%20%20%20%20books.splice(index,%201);%20%20%20%20res.status(200).json(%7B%20message:%20'Book%20deleted%20successfully'%20%7D);%20%7D);%20%20app.listen(PORT,%20()%20=%3E%20%7B%20%20%20console.log(Server%20is%20running%20on%20port%20$%7BPORT%7D);%20%7D);: 
+}

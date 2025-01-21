@@ -1,0 +1,22 @@
+meta {
+  name: Api
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/books
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "book_id": "101",
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "genre": "Fiction",
+      "year": 1925,
+      "copies": 5
+  }
+}
